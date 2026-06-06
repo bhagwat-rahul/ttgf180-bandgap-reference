@@ -5,7 +5,7 @@
 
 `default_nettype none
 
-module tt_um_rahulbhagwat_brainamp_lna (
+module tt_um_rahulbhagwat_gf180_bandgap_reference (
     input  wire       VGND,
     input  wire       VDPWR,    // 1.8v power supply
     input  wire [7:0] ui_in,    // Dedicated inputs
