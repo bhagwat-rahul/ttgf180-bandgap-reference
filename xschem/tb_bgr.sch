@@ -6,7 +6,7 @@ S {}
 F {}
 E {}
 T {BGR Testbench
-We want a stable voltage over a temperature range of -40C <-> +140C for VAPWR = 3.3V
+We want a stable voltage over a temperature range of -40C <-> +125C for VAPWR = 3.3V
 Vhigh - Vlow should be least, so do a sweep where voltage change slope is flattest} -390 -390 0 0 0.4 0.4 {
 }
 N 50 20 140 20 {lab=GND}
@@ -28,7 +28,7 @@ value=
 .param fnoicor=0         ; flicker noise model selector
 .lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice statistical
 .control
-  dc TEMP -40 140 5
+  dc TEMP -40 125 5
   plot v(VBGR)
 .endc
 "}
