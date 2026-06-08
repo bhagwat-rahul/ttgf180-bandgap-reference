@@ -18,3 +18,11 @@ footprint=1206
 device=resistor
 m=1}
 C {vsource.sym} 100 10 0 0 {name=Vdummy value="DC 1.2" savecurrent=false}
+C {symbols/npn_05p00x05p00.sym} -230 -130 0 0 {name=Q1
+model=npn_05p00x05p00
+spiceprefix=X
+m=1}
+C {symbols/npn_05p00x05p00.sym} -60 -130 0 0 {name=Q2
+model=npn_05p00x05p00
+spiceprefix=X
+m=8}

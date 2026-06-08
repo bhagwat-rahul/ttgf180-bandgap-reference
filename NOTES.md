@@ -19,3 +19,11 @@ BGR consists of:-
 Make a current mirror with the following circuits:-
 1. CTAT (Complementary To Absolute Temperature)
 2. PTAT (Proportional To Absolute Temperature)
+
+
+## Random notes as i read resources and try things
+
+BGRs are based on circuits created by [Widlar](research-papers/widlar-bandgap-reference-paper.pdf) in 1971, and improved by [Brokaw](research-papers/widlar-bandgap-reference-paper.pdf) in 1974.
+Ideally, a bi-polar or BiCMOS process is more well suited for this since they have first class BJTs (bipolar devices)
+However, most CPU BGRs are usually made of **parasitic BJTs**, these are devices that the process was not created to make but are hidden in the geometry of MOSFETS and can cause issues if they act like bi-polar structures causing issues like **latch-up**
+However, these parasitic BJTs can be exploited for use cases like Bandgap References.
