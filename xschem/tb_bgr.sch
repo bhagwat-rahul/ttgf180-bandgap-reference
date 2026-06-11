@@ -26,6 +26,7 @@ value=
 .param mc_skew=1         ; MOS variation scale factor (1 = Nominal)
 .param res_mc_skew=1     ; resistor variation scale factor (1 = Nominal)
 .param fnoicor=0         ; flicker noise model selector
+.param sw_stat_mismatch=0
 .lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice statistical
 .control
   dc TEMP -40 125 5
