@@ -29,9 +29,9 @@ C {ipin.sym} 0 -350 1 0 {name=VBGR1 lab=VBGR}
 C {iopin.sym} 110 -200 3 0 {name=BIAS_P lab=BIAS_P}
 C {iopin.sym} -100 -200 3 0 {name=VCTRL lab=VCTRL}
 C {lab_wire.sym} 0 -200 1 0 {name=START_ON sig_type=std_logic lab=START_ON}
-C {symbols/nfet_03v3.sym} 70 -320 2 1 {name=M1
-L=0.28u
-W=0.22u
+C {symbols/nfet_03v3.sym} 70 -320 2 1 {name=MDET_N
+L=1u
+W=4u
 nf=1
 m=1
 ad="'int((nf+1)/2) * W/nf * 0.18u'"
@@ -43,9 +43,9 @@ sa=0 sb=0 sd=0
 model=nfet_03v3
 spiceprefix=X
 }
-C {symbols/nfet_03v3.sym} 90 -140 0 0 {name=M2
-L=0.28u
-W=0.22u
+C {symbols/nfet_03v3.sym} 90 -140 0 0 {name=MST_BIAS
+L=4u
+W=0.3u
 nf=1
 m=1
 ad="'int((nf+1)/2) * W/nf * 0.18u'"
@@ -57,9 +57,9 @@ sa=0 sb=0 sd=0
 model=nfet_03v3
 spiceprefix=X
 }
-C {symbols/nfet_03v3.sym} -80 -140 0 1 {name=M3
-L=0.28u
-W=0.22u
+C {symbols/nfet_03v3.sym} -80 -140 0 1 {name=MST_CTRL
+L=4u
+W=0.3u
 nf=1
 m=1
 ad="'int((nf+1)/2) * W/nf * 0.18u'"
@@ -71,9 +71,9 @@ sa=0 sb=0 sd=0
 model=nfet_03v3
 spiceprefix=X
 }
-C {symbols/pfet_03v3.sym} -80 -320 0 1 {name=M4
-L=0.28u
-W=0.22u
+C {symbols/pfet_03v3.sym} -80 -320 0 1 {name=MDET_P
+L=4u
+W=0.5u
 nf=1
 m=1
 ad="'int((nf+1)/2) * W/nf * 0.18u'"
