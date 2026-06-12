@@ -28,6 +28,8 @@ value=
 .param fnoicor=0         ; flicker noise model selector
 .param sw_stat_mismatch=0
 .lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice statistical
+.lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice bjt_statistical
+.lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice res_statistical
 .control
   dc TEMP -40 125 5
   plot v(VBGR)
