@@ -17,7 +17,7 @@ N 80 -90 80 -20 {lab=VBGR}
 N 140 -90 140 -0 {lab=GND}
 C {vsource.sym} 110 0 3 0 {name=VAPWR value="DC 3.3" savecurrent=false}
 C {gnd.sym} 140 20 3 1 {name=l1 lab=GND}
-C {bgr_core.sym} 0 0 0 0 {name=xbgr_core}
+C {bgr.sym} -100 0 0 0 {name=xbgr}
 C {lab_wire.sym} 80 -20 3 1 {name=VBGR sig_type=std_logic lab=VBGR}
 C {code.sym} -60 -190 0 0 {name=sim_temp_sweep only_toplevel=false
 value=
@@ -33,6 +33,8 @@ value=
 .control
   dc TEMP -40 125 5
   plot v(VBGR)
+  plot v(xbgr.x1.E2)-v(xbgr.x1.E1)
+  plot v(xbgr.x1.E1)
 .endc
 "}
 C {res.sym} 110 -90 3 0 {name=RLoad
