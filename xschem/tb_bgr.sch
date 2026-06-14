@@ -34,9 +34,9 @@ value=
   dc TEMP -40 125 5
   display
   plot v(VBGR)
-  plot v(xbgr.x1.E2)-v(xbgr.x1.E1)
-  plot v(xbgr.x1.BIAS_P)
-  plot v(xbgr.x1.E1)
+  plot v(xbgr.xbgr_core.E2)-v(xbgr.xbgr_core.E1)
+  plot v(xbgr.xbgr_core.BIAS_P)
+  plot v(xbgr.xbgr_core.E1)
 .endc
 "}
 C {res.sym} 110 -90 3 0 {name=RLoad

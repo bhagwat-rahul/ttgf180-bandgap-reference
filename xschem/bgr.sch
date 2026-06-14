@@ -34,9 +34,9 @@ N 300 140 380 140 {lab=#net3}
 N 380 140 380 220 {lab=#net3}
 N -380 220 380 220 {lab=#net3}
 N -380 -50 -380 220 {lab=#net3}
-C {bgr_core_without_amp.sym} -230 0 0 0 {name=x1}
-C {bgr_error_amp.sym} 160 -10 0 0 {name=x2}
-C {bgr_startup.sym} 150 130 0 0 {name=x3}
+C {bgr_core_without_amp.sym} -230 0 0 0 {name=xbgr_core}
+C {bgr_error_amp.sym} 160 -10 0 0 {name=xbgr_amp}
+C {bgr_startup.sym} 150 130 0 0 {name=xbgr_startup}
 C {iopin.sym} 300 40 0 1 {name=VAPWR lab=VAPWR}
 C {iopin.sym} -80 150 0 0 {name=VGND lab=VGND}
 C {opin.sym} -30 30 1 0 {name=VBGR lab=VBGR}
