@@ -32,8 +32,10 @@ value=
 .lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice res_statistical
 .control
   dc TEMP -40 125 5
+  display
   plot v(VBGR)
   plot v(xbgr.x1.E2)-v(xbgr.x1.E1)
+  plot v(xbgr.x1.BIAS_P)
   plot v(xbgr.x1.E1)
 .endc
 "}
