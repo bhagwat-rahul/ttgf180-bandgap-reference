@@ -1,47 +1,37 @@
 magic
 tech gf180mcuD
-magscale 1 10
-timestamp 1781511482
-<< error_s >>
-rect 0 -800 200 -771
-rect 625 -780 657 -771
-rect 588 -872 657 -780
-rect 196 -957 246 -954
-rect 416 -1043 427 -997
-rect 588 -1120 659 -872
-rect 1819 -897 1851 -851
-rect 1817 -1000 1851 -952
-rect 1865 -1000 1897 -897
-rect 588 -1223 657 -1120
-rect 1865 -1180 1899 -1000
-rect 2003 -1168 2049 -1072
-rect 3707 -1168 3753 -1072
-rect 588 -1260 648 -1223
-rect 1865 -1283 1897 -1180
+magscale 1 5
+timestamp 1781531543
 << metal1 >>
-rect 0 0 200 200
-rect 0 -400 200 -200
-rect 0 -800 200 -600
-rect 0 -1200 200 -1000
+rect 0 0 100 100
+rect 1220 10 1300 45
+rect 1230 5 1300 10
+rect 1445 10 1530 45
+rect 1445 5 1520 10
+rect 0 -200 100 -100
+rect 0 -400 100 -300
+rect 1170 -485 1250 -435
+rect 2090 -485 2165 -435
+rect 0 -600 100 -500
 use pfet_03v3_GBSZ22  XMOVCLAMP
 timestamp 1781511482
-transform 1 0 2878 0 1 -1120
-box -1050 -260 1050 260
+transform 1 0 1670 0 1 -460
+box -525 -130 525 130
 use nfet_03v3_7UJBU5  XMOVDET_N
 timestamp 1781511482
-transform 1 0 294 0 1 -1020
-box -354 -240 354 240
+transform 1 0 1372 0 1 25
+box -177 -120 177 120
 use pfet_03v3_G8Y8RW  XMOVDET_P
 timestamp 1781511482
-transform 1 0 1238 0 1 -310
-box -650 -1010 650 1010
+transform 1 0 619 0 1 -155
+box -325 -505 325 505
 << labels >>
-flabel metal1 0 0 200 200 0 FreeSans 1280 0 0 0 VAPWR
+flabel metal1 0 0 100 100 0 FreeSans 640 0 0 0 VAPWR
 port 0 nsew
-flabel metal1 0 -400 200 -200 0 FreeSans 1280 0 0 0 VBGR
+flabel metal1 0 -200 100 -100 0 FreeSans 640 0 0 0 VBGR
 port 1 nsew
-flabel metal1 0 -800 200 -600 0 FreeSans 1280 0 0 0 VCTRL
+flabel metal1 0 -400 100 -300 0 FreeSans 640 0 0 0 VCTRL
 port 2 nsew
-flabel metal1 0 -1200 200 -1000 0 FreeSans 1280 0 0 0 VGND
+flabel metal1 0 -600 100 -500 0 FreeSans 640 0 0 0 VGND
 port 3 nsew
 << end >>
