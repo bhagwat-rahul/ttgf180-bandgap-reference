@@ -22,21 +22,19 @@ C {lab_wire.sym} 80 -20 3 1 {name=VBGR sig_type=std_logic lab=VBGR}
 C {code.sym} -60 -190 0 0 {name=sim_temp_sweep only_toplevel=false
 value=
 "
-.param sw_stat_global=1  ; enable statistical variation (0 = OFF, 1 = ON)
+.param sw_stat_global=0  ; enable statistical variation (0 = OFF, 1 = ON)
 .param mc_skew=1         ; MOS variation scale factor (1 = Nominal)
 .param res_mc_skew=1     ; resistor variation scale factor (1 = Nominal)
 .param fnoicor=0         ; flicker noise model selector
 .param sw_stat_mismatch=0
-.lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice statistical
-.lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice bjt_statistical
-.lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice res_statistical
+.lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice typical
+.lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice bjt_typical
+.lib /foss/pdks/gf180mcuD/libs.tech/ngspice/sm141064.ngspice res_typical
 .control
   dc TEMP -40 125 5
   display
+  wrdata tb_bgr_temp_sweep.dat v(VBGR) v(xbgr.net1) v(xbgr.net2) v(xbgr.net3) v(xbgr.net4) v(xbgr.xbgr_core.e2) v(xbgr.xbgr_core.e1)
   plot v(VBGR)
-  plot v(xbgr.xbgr_core.E2)-v(xbgr.xbgr_core.E1)
-  plot v(xbgr.xbgr_core.BIAS_P)
-  plot v(xbgr.xbgr_core.E1)
 .endc
 "}
 C {res.sym} 110 -90 3 0 {name=RLoad
