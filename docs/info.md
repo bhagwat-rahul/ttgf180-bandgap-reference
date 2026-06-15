@@ -9,8 +9,12 @@ You can also include images in this folder and reference them in the markdown. E
 
 ## How it works
 
+Outputs a stable reference voltage over a temperature range of -40C - 125C (varies by about 1% over that range in simulation)
 
 ## How to test
 
+Apply 3.3V VAPWR and plot a graph of voltage over temperature, confirm that variability is under 1% from -40C - 125C.
 
 ## External hardware
+
+N/A
