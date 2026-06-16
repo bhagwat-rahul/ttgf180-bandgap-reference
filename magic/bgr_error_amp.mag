@@ -1,76 +1,106 @@
 magic
 tech gf180mcuD
-magscale 1 10
-timestamp 1781604720
-<< error_s >>
-rect 711 -137 743 -91
-rect -46 -200 -37 -154
-rect 0 -400 9 -200
-rect 709 -240 743 -192
-rect 757 -240 789 -137
-rect -46 -600 -37 -554
-rect 0 -800 9 -600
-rect -46 -1000 -37 -954
-rect 0 -1200 9 -1000
-rect -46 -1400 -37 -1354
-rect 0 -1600 9 -1400
-rect -46 -1800 -37 -1754
-rect 0 -1977 9 -1800
-rect 757 -1920 791 -240
-rect 4831 -1117 4863 -1071
-rect 4829 -1220 4863 -1172
-rect 4877 -1220 4909 -1117
-rect 1551 -1597 1583 -1551
-rect 2837 -1560 2869 -1551
-rect 1549 -1700 1583 -1652
-rect 1597 -1700 1629 -1597
-rect 2800 -1652 2869 -1560
-rect 757 -2023 789 -1920
-rect 1597 -1980 1631 -1700
-rect 1597 -2083 1629 -1980
-rect 2800 -2040 2871 -1652
-rect 2800 -2143 2869 -2040
-rect 4877 -2100 4911 -1220
-rect 2800 -2180 2860 -2143
-rect 4877 -2203 4909 -2100
+timestamp 1781614832
 << metal1 >>
-rect 0 0 200 200
-rect 0 -400 200 -200
-rect 0 -800 200 -600
-rect 0 -1200 200 -1000
-rect 0 -1600 200 -1400
-rect 0 -2000 200 -1800
+rect 350 59 382 70
+rect 350 33 359 59
+rect 377 33 382 59
+rect 350 20 382 33
+rect 470 60 522 70
+rect 470 30 481 60
+rect 512 30 522 60
+rect 470 20 522 30
+rect 0 0 20 20
+rect 0 -40 20 -20
+rect 340 -33 388 -25
+rect 340 -43 359 -33
+rect 377 -43 388 -33
+rect 340 -50 388 -43
+rect 393 -50 466 -20
+rect 473 -42 522 -37
+rect 473 -54 482 -42
+rect 511 -54 522 -42
+rect 473 -60 522 -54
+rect 626 -73 637 -72
+rect 626 -79 627 -73
+rect 636 -79 637 -73
+rect 626 -80 637 -79
+rect 679 -115 699 -110
+rect 627 -126 636 -123
+rect 627 -134 628 -126
+rect 635 -134 636 -126
+rect 679 -126 683 -115
+rect 696 -126 699 -115
+rect 679 -130 699 -126
+rect 627 -137 636 -134
+rect 0 -200 20 -180
+rect 208 -205 260 -160
+rect 378 -170 461 -140
+<< via1 >>
+rect 359 33 377 59
+rect 481 30 512 60
+rect 359 -43 377 -33
+rect 482 -54 511 -42
+rect 627 -79 636 -73
+rect 628 -134 635 -126
+rect 683 -126 696 -115
+<< metal2 >>
+rect 350 59 383 70
+rect 350 33 359 59
+rect 377 33 383 59
+rect 350 -33 383 33
+rect 350 -43 359 -33
+rect 377 -43 383 -33
+rect 350 -50 383 -43
+rect 470 60 522 70
+rect 470 30 481 60
+rect 512 30 522 60
+rect 470 -42 522 30
+rect 470 -54 482 -42
+rect 511 -54 522 -42
+rect 470 -60 522 -54
+rect 626 -73 637 -72
+rect 626 -79 627 -73
+rect 636 -79 637 -73
+rect 626 -110 637 -79
+rect 626 -115 699 -110
+rect 626 -126 683 -115
+rect 696 -126 699 -115
+rect 626 -134 628 -126
+rect 635 -130 699 -126
+rect 635 -134 637 -130
+rect 626 -150 637 -134
 use pfet_03v3_KHY8T4  XMDIFF_N
 timestamp 1781604720
-transform 1 0 1170 0 1 -1110
-box -450 -1010 450 1010
+transform 0 1 559 -1 0 -49
+box -45 -101 45 101
 use pfet_03v3_KHY8T4  XMDIFF_P
 timestamp 1781604720
-transform 1 0 330 0 1 -1050
-box -450 -1010 450 1010
+transform 0 1 300 -1 0 -40
+box -45 -101 45 101
 use nfet_03v3_2876U5  XMLOAD_OUT
 timestamp 1781604720
-transform 1 0 5890 0 1 -1690
-box -1050 -610 1050 610
+transform 1 0 544 0 1 -162
+box -105 -61 105 61
 use nfet_03v3_2876U5  XMLOAD_REF
 timestamp 1781604720
-transform 1 0 3850 0 1 -1630
-box -1050 -610 1050 610
+transform 1 0 295 0 1 -159
+box -105 -61 105 61
 use pfet_03v3_C49JPW  XMTAIL
 timestamp 1781604720
-transform 1 0 2210 0 1 -1870
-box -650 -310 650 310
+transform 1 0 111 0 1 88
+box -65 -31 65 31
 << labels >>
-flabel metal1 0 0 200 200 0 FreeSans 1280 0 0 0 BIAS_P
+flabel metal1 0 0 20 20 0 FreeSans 128 0 0 0 BIAS_P
 port 0 nsew
-flabel metal1 0 -400 200 -200 0 FreeSans 1280 0 0 0 VAPWR
+flabel metal1 0 -40 20 -20 0 FreeSans 128 0 0 0 VAPWR
 port 1 nsew
-flabel metal1 0 -800 200 -600 0 FreeSans 1280 0 0 0 VIN_P
-port 2 nsew
-flabel metal1 0 -1200 200 -1000 0 FreeSans 1280 0 0 0 VIN_N
-port 3 nsew
-flabel metal1 0 -1600 200 -1400 0 FreeSans 1280 0 0 0 VOUT
-port 4 nsew
-flabel metal1 0 -2000 200 -1800 0 FreeSans 1280 0 0 0 VGND
+flabel metal1 0 -200 20 -180 0 FreeSans 128 0 0 0 VGND
 port 5 nsew
+flabel metal1 679 -130 699 -110 0 FreeSans 128 0 0 0 VOUT
+port 4 nsew
+flabel metal1 486 43 506 63 0 FreeSans 128 0 0 0 VIN_N
+port 3 nsew
+flabel metal1 360 36 380 56 0 FreeSans 128 0 0 0 VIN_P
+port 2 nsew
 << end >>
