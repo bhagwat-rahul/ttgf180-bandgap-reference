@@ -33,7 +33,7 @@ repo_root() {
 run_lvs() {
   local cell="${1:-bgr_top}"
   local root magic_dir xschem_dir build_dir magic_file schem_file
-  local magic_rc netgen_setup layout_spice schem_spice magic_tcl lvs_report
+  local magic_rc netgen_setup layout_spice raw_layout_spice schem_spice magic_tcl lvs_report
 
   root="$(repo_root)"
   magic_dir="$root/magic"
@@ -47,6 +47,7 @@ run_lvs() {
   netgen_setup="${NETGEN_SETUP:-${PDK_ROOT:-/foss/pdks}/gf180mcuD/libs.tech/netgen/gf180mcuD_setup.tcl}"
 
   layout_spice="$build_dir/${cell}_layout.spice"
+  raw_layout_spice="$build_dir/${cell}.spice"
   schem_spice="$build_dir/${cell}.spice"
   magic_tcl="$build_dir/extract_${cell}.tcl"
   lvs_report="$build_dir/${cell}_lvs.out"
@@ -70,12 +71,16 @@ extract path "$build_dir"
 extract all
 ext2spice lvs
 ext2spice subcircuit top on
-ext2spice -o "$layout_spice"
+cd "$build_dir"
+ext2spice
 quit -noprompt
 EOF
 
   echo "==> Extracting layout: $magic_file"
+  rm -f "$raw_layout_spice" "$layout_spice"
   magic -dnull -noconsole -rcfile "$magic_rc" "$magic_tcl"
+  [[ -f "$raw_layout_spice" ]] || die "magic did not create expected layout netlist: $raw_layout_spice"
+  mv "$raw_layout_spice" "$layout_spice"
 
   echo "==> Netlisting schematic: $schem_file"
   xschem -q -n -r -x -o "$build_dir" --netlist "$schem_file"
