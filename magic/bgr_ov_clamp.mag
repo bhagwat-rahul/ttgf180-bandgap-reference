@@ -1,0 +1,32 @@
+magic
+tech gf180mcuD
+magscale 1 10
+timestamp 1781601237
+<< error_s >>
+rect 625 420 657 429
+rect 588 328 657 420
+rect 104 157 115 203
+rect 416 157 427 203
+rect 588 80 659 328
+rect 1819 303 1851 349
+rect 1817 200 1851 248
+rect 1865 200 1897 303
+rect 588 -23 657 80
+rect 1865 20 1899 200
+rect 2003 32 2049 128
+rect 3707 32 3753 128
+rect 588 -60 648 -23
+rect 1865 -83 1897 20
+use pfet_03v3_GBSZ22  XMOVCLAMP
+timestamp 1781601237
+transform 1 0 2878 0 1 80
+box -1050 -260 1050 260
+use nfet_03v3_7UJBU5  XMOVDET_N
+timestamp 1781601237
+transform 1 0 294 0 1 180
+box -354 -240 354 240
+use pfet_03v3_G8Y8RW  XMOVDET_P
+timestamp 1781601237
+transform 1 0 1238 0 1 890
+box -650 -1010 650 1010
+<< end >>

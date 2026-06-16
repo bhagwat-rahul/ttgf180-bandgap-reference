@@ -1,0 +1,46 @@
+magic
+tech gf180mcuD
+magscale 1 10
+timestamp 1781601251
+<< error_s >>
+rect 771 1863 803 1909
+rect 769 1760 803 1808
+rect 817 1760 849 1863
+rect 817 80 851 1760
+rect 4891 883 4923 929
+rect 4889 780 4923 828
+rect 4937 780 4969 883
+rect 1611 403 1643 449
+rect 2897 440 2929 449
+rect 1609 300 1643 348
+rect 1657 300 1689 403
+rect 2860 348 2929 440
+rect 817 -23 849 80
+rect 1657 20 1691 300
+rect 1657 -83 1689 20
+rect 2860 -40 2931 348
+rect 2860 -143 2929 -40
+rect 4937 -100 4971 780
+rect 2860 -180 2920 -143
+rect 4937 -203 4969 -100
+use pfet_03v3_KHY8T4  XMDIFF_N
+timestamp 1781601251
+transform 1 0 1230 0 1 890
+box -450 -1010 450 1010
+use pfet_03v3_KHY8T4  XMDIFF_P
+timestamp 1781601251
+transform 1 0 390 0 1 950
+box -450 -1010 450 1010
+use nfet_03v3_2876U5  XMLOAD_OUT
+timestamp 1781601251
+transform 1 0 5950 0 1 310
+box -1050 -610 1050 610
+use nfet_03v3_2876U5  XMLOAD_REF
+timestamp 1781601251
+transform 1 0 3910 0 1 370
+box -1050 -610 1050 610
+use pfet_03v3_C49JPW  XMTAIL
+timestamp 1781601251
+transform 1 0 2270 0 1 130
+box -650 -310 650 310
+<< end >>
