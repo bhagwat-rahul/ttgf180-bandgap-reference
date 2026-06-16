@@ -1,0 +1,10 @@
+magic
+tech gf180mcuD
+magscale 1 5
+timestamp 1781601764
+<< comment >>
+rect 0 32526 32872 32536
+rect 0 10 10 32526
+rect 32862 10 32872 32526
+rect 0 0 32872 10
+<< end >>
