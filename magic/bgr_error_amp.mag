@@ -1,46 +1,76 @@
 magic
 tech gf180mcuD
 magscale 1 10
-timestamp 1781601251
+timestamp 1781604720
 << error_s >>
-rect 771 1863 803 1909
-rect 769 1760 803 1808
-rect 817 1760 849 1863
-rect 817 80 851 1760
-rect 4891 883 4923 929
-rect 4889 780 4923 828
-rect 4937 780 4969 883
-rect 1611 403 1643 449
-rect 2897 440 2929 449
-rect 1609 300 1643 348
-rect 1657 300 1689 403
-rect 2860 348 2929 440
-rect 817 -23 849 80
-rect 1657 20 1691 300
-rect 1657 -83 1689 20
-rect 2860 -40 2931 348
-rect 2860 -143 2929 -40
-rect 4937 -100 4971 780
-rect 2860 -180 2920 -143
-rect 4937 -203 4969 -100
+rect 711 -137 743 -91
+rect -46 -200 -37 -154
+rect 0 -400 9 -200
+rect 709 -240 743 -192
+rect 757 -240 789 -137
+rect -46 -600 -37 -554
+rect 0 -800 9 -600
+rect -46 -1000 -37 -954
+rect 0 -1200 9 -1000
+rect -46 -1400 -37 -1354
+rect 0 -1600 9 -1400
+rect -46 -1800 -37 -1754
+rect 0 -1977 9 -1800
+rect 757 -1920 791 -240
+rect 4831 -1117 4863 -1071
+rect 4829 -1220 4863 -1172
+rect 4877 -1220 4909 -1117
+rect 1551 -1597 1583 -1551
+rect 2837 -1560 2869 -1551
+rect 1549 -1700 1583 -1652
+rect 1597 -1700 1629 -1597
+rect 2800 -1652 2869 -1560
+rect 757 -2023 789 -1920
+rect 1597 -1980 1631 -1700
+rect 1597 -2083 1629 -1980
+rect 2800 -2040 2871 -1652
+rect 2800 -2143 2869 -2040
+rect 4877 -2100 4911 -1220
+rect 2800 -2180 2860 -2143
+rect 4877 -2203 4909 -2100
+<< metal1 >>
+rect 0 0 200 200
+rect 0 -400 200 -200
+rect 0 -800 200 -600
+rect 0 -1200 200 -1000
+rect 0 -1600 200 -1400
+rect 0 -2000 200 -1800
 use pfet_03v3_KHY8T4  XMDIFF_N
-timestamp 1781601251
-transform 1 0 1230 0 1 890
+timestamp 1781604720
+transform 1 0 1170 0 1 -1110
 box -450 -1010 450 1010
 use pfet_03v3_KHY8T4  XMDIFF_P
-timestamp 1781601251
-transform 1 0 390 0 1 950
+timestamp 1781604720
+transform 1 0 330 0 1 -1050
 box -450 -1010 450 1010
 use nfet_03v3_2876U5  XMLOAD_OUT
-timestamp 1781601251
-transform 1 0 5950 0 1 310
+timestamp 1781604720
+transform 1 0 5890 0 1 -1690
 box -1050 -610 1050 610
 use nfet_03v3_2876U5  XMLOAD_REF
-timestamp 1781601251
-transform 1 0 3910 0 1 370
+timestamp 1781604720
+transform 1 0 3850 0 1 -1630
 box -1050 -610 1050 610
 use pfet_03v3_C49JPW  XMTAIL
-timestamp 1781601251
-transform 1 0 2270 0 1 130
+timestamp 1781604720
+transform 1 0 2210 0 1 -1870
 box -650 -310 650 310
+<< labels >>
+flabel metal1 0 0 200 200 0 FreeSans 1280 0 0 0 BIAS_P
+port 0 nsew
+flabel metal1 0 -400 200 -200 0 FreeSans 1280 0 0 0 VAPWR
+port 1 nsew
+flabel metal1 0 -800 200 -600 0 FreeSans 1280 0 0 0 VIN_P
+port 2 nsew
+flabel metal1 0 -1200 200 -1000 0 FreeSans 1280 0 0 0 VIN_N
+port 3 nsew
+flabel metal1 0 -1600 200 -1400 0 FreeSans 1280 0 0 0 VOUT
+port 4 nsew
+flabel metal1 0 -2000 200 -1800 0 FreeSans 1280 0 0 0 VGND
+port 5 nsew
 << end >>
