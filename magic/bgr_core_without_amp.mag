@@ -1,7 +1,7 @@
 magic
 tech gf180mcuD
 magscale 1 10
-timestamp 1781690922
+timestamp 1781691092
 << metal1 >>
 rect 18190 8410 18390 8610
 rect 34900 8580 35010 8600
@@ -164,7 +164,7 @@ transform 0 1 28623 -1 0 8496
 box -336 -6623 336 6623
 use ppolyf_u_1k_H3DMEV  XR3
 timestamp 1781604720
-transform 0 1 31558 -1 0 15686
+transform 0 1 25228 -1 0 10576
 box -336 -14058 336 14058
 << labels >>
 flabel metal1 0 0 200 200 0 FreeSans 1280 0 0 0 BIAS_P
