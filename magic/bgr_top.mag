@@ -1,10 +1,22 @@
 magic
 tech gf180mcuD
-magscale 1 5
-timestamp 1781601764
+magscale 1 10
+timestamp 1781815455
 << comment >>
-rect 0 32526 32872 32536
-rect 0 10 10 32526
-rect 32862 10 32872 32526
-rect 0 0 32872 10
+rect 0 65052 65744 65072
+rect 0 20 20 65052
+rect 65724 20 65744 65052
+rect 0 0 65744 20
+use bgr_core_without_amp  bgr_core_without_amp_0
+timestamp 1781812849
+transform 1 0 -3370 0 1 40490
+box 10640 2900 41080 11600
+use bgr_error_amp  bgr_error_amp_0
+timestamp 1781624140
+transform 1 0 38270 0 1 33861
+box 1000 -2601 6807 2597
+use bgr_ov_clamp  bgr_ov_clamp_0
+timestamp 1781697025
+transform 1 0 7180 0 1 24710
+box -380 -1900 2110 1200
 << end >>
