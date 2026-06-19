@@ -4,10 +4,12 @@ set -euo pipefail
 usage() {
   cat <<'EOF'
 Usage:
-  ./run_checks.sh {drc|antenna|lvs|pex|all} [cell_name]
+  ./run_checks.sh {drc|drc-klayout|drc-all|antenna|lvs|pex|all} [cell_name]
 
 Examples:
   ./run_checks.sh drc bgr
+  ./run_checks.sh drc-klayout bgr
+  ./run_checks.sh drc-all bgr
   ./run_checks.sh antenna bgr
   ./run_checks.sh lvs bgr_error_amp
   ./run_checks.sh pex bgr
@@ -80,6 +82,7 @@ foreach {why rectangles} \$result {
     puts \$fout "  \$rectangle"
   }
 }
+
 puts \$fout "\nDRC_COUNT=\$count"
 close \$fout
 quit -noprompt
@@ -96,6 +99,90 @@ EOF
   fi
   echo "==> DRC passed"
   echo "==> DRC report: $report"
+}
+
+run_klayout_drc() {
+  local cell="${1:-bgr}" root magic_file build_dir export_tcl gds_file
+  local rcfile drc_runner variant run_log summary report count violation_count runner_rc details
+  root="$(repo_root)"
+  magic_file="$root/magic/$cell.mag"
+  build_dir="$root/build/drc-klayout/$cell"
+  export_tcl="$build_dir/export_${cell}_gds.tcl"
+  gds_file="$build_dir/$cell.gds"
+  run_log="$build_dir/${cell}_klayout_drc.log"
+  summary="$build_dir/${cell}_klayout_drc.out"
+  rcfile="$(magic_rc)"
+  drc_runner="${KLAYOUT_DRC_RUNNER:-${PDK_ROOT:-/foss/pdks}/gf180mcuD/libs.tech/klayout/drc/run_drc.py}"
+  variant="${KLAYOUT_DRC_VARIANT:-C}"
+
+  require_magic_cell "$cell"
+  require_cmd python3
+  require_cmd klayout
+  [[ -f "$drc_runner" ]] || die "KLayout GF180 DRC runner not found: $drc_runner"
+  mkdir -p "$build_dir"
+
+  cat >"$export_tcl" <<EOF
+crashbackups stop
+drc off
+load "$magic_file"
+select top cell
+gds readonly true
+gds rescale false
+gds write "$gds_file"
+quit -noprompt
+EOF
+
+  echo "==> Exporting GDS for KLayout DRC: $magic_file"
+  rm -f "$gds_file" "$run_log" "$summary" "$build_dir"/*.lyrdb
+  magic -dnull -noconsole -rcfile "$rcfile" "$export_tcl"
+  [[ -f "$gds_file" ]] || die "Magic did not create GDS for KLayout DRC: $gds_file"
+
+  echo "==> Running full KLayout GF180 DRC (variant $variant, FEOL+BEOL+connectivity+offgrid+density+antenna)"
+  set +e
+  python3 "$drc_runner" \
+    --path="$gds_file" \
+    --variant="$variant" \
+    --topcell="$cell" \
+    --run_dir="$build_dir" \
+    --run_mode=deep \
+    --mp="${KLAYOUT_DRC_JOBS:-2}" \
+    --density \
+    --antenna 2>&1 | tee "$run_log"
+  runner_rc="${PIPESTATUS[0]}"
+  set -e
+
+  violation_count=0
+  details=""
+  while IFS= read -r report; do
+    count="$(grep -c '<item>' "$report" || true)"
+    violation_count=$((violation_count + count))
+    details+="$(basename "$report"): $count"$'\n'
+  done < <(find "$build_dir" -maxdepth 1 -type f -name '*.lyrdb' -print)
+
+  if ! find "$build_dir" -maxdepth 1 -type f -name '*.lyrdb' -print -quit | grep -q .; then
+    die "KLayout DRC produced no result databases; see: $run_log"
+  fi
+
+  cat >"$summary" <<EOF
+cell: $cell
+variant: $variant
+gds: $gds_file
+log: $run_log
+runner_exit_code: $runner_rc
+KLAYOUT_DRC_COUNT=$violation_count
+
+$details
+EOF
+  if (( runner_rc != 0 && violation_count == 0 )); then
+    echo "==> KLayout DRC tool failed without violation markers; see: $run_log" >&2
+    return "$runner_rc"
+  fi
+  if (( violation_count != 0 )); then
+    echo "==> KLayout DRC failed with $violation_count marker(s); see: $summary" >&2
+    return 1
+  fi
+  echo "==> KLayout DRC passed"
+  echo "==> KLayout DRC report: $summary"
 }
 
 run_antenna() {
@@ -144,29 +231,53 @@ EOF
   echo "==> Antenna report: $report"
 }
 
-run_pex() {
-  local cell="${1:-bgr}" root magic_file build_dir magic_tcl rcfile
-  local extract_cell raw_spice pex_spice report magic_log resistor_count capacitor_count
+PEX_CELL_ORDER=()
+
+collect_pex_cells() {
+  local cell="$1" root child existing
   root="$(repo_root)"
-  magic_file="$root/magic/$cell.mag"
+  while IFS= read -r child; do
+    [[ -f "$root/magic/$child.mag" && -f "$root/xschem/$child.sch" ]] || continue
+    collect_pex_cells "$child"
+  done < <(awk '$1 == "use" {print $2}' "$root/magic/$cell.mag" | sort -u)
+
+  for existing in "${PEX_CELL_ORDER[@]-}"; do
+    [[ "$existing" == "$cell" ]] && return
+  done
+  PEX_CELL_ORDER+=("$cell")
+}
+
+run_pex() {
+  local cell="${1:-bgr}" root build_dir rcfile report pex_spice raw_spice
+  local stage stage_tcl stage_log assemble_tcl assemble_log
+  local total extracted output failed=0 stage_details=""
+  local bad_devices node_errors missing_connections
+  local resistor_count capacitor_count
+  root="$(repo_root)"
   build_dir="$root/build/pex/$cell"
-  magic_tcl="$build_dir/pex_${cell}.tcl"
   rcfile="$(magic_rc)"
-  extract_cell="${cell}_pex_flat"
-  raw_spice="$build_dir/$extract_cell.spice"
-  pex_spice="$build_dir/${cell}_pex.spice"
   report="$build_dir/${cell}_pex.out"
-  magic_log="$build_dir/${cell}_pex.magic.log"
+  raw_spice="$build_dir/$cell.spice"
+  pex_spice="$build_dir/${cell}_pex.spice"
+  assemble_tcl="$build_dir/assemble_${cell}_pex.tcl"
+  assemble_log="$build_dir/${cell}_pex_assemble.magic.log"
 
   require_magic_cell "$cell"
   mkdir -p "$build_dir"
+  rm -f "$build_dir"/*.ext "$build_dir"/*.sim "$build_dir"/*.nodes \
+    "$build_dir"/*.spice "$build_dir"/*.log "$report"
 
-  cat >"$magic_tcl" <<EOF
+  PEX_CELL_ORDER=()
+  collect_pex_cells "$cell"
+  echo "==> Hierarchical PEX order: ${PEX_CELL_ORDER[*]}"
+
+  for stage in "${PEX_CELL_ORDER[@]}"; do
+    stage_tcl="$build_dir/pex_${stage}.tcl"
+    stage_log="$build_dir/${stage}_extresist.magic.log"
+    cat >"$stage_tcl" <<EOF
 crashbackups stop
 drc off
-load "$magic_file"
-flatten "$extract_cell"
-load "$extract_cell"
+load "$root/magic/$stage.mag"
 select top cell
 extract path "$build_dir"
 extract do adjust
@@ -177,9 +288,53 @@ extract all
 cd "$build_dir"
 ext2sim labels on
 ext2sim
+extresist blackbox on
 extresist all
+quit -noprompt
+EOF
+
+    echo "==> Extracting hierarchical R+C stage: $stage"
+    magic -dnull -noconsole -rcfile "$rcfile" "$stage_tcl" 2>&1 | tee "$stage_log"
+    total="$(sed -n 's/.*Total Nets: *//p' "$stage_log" | tail -1)"
+    extracted="$(sed -n 's/.*Nets extracted: *\([0-9][0-9]*\).*/\1/p' "$stage_log" | tail -1)"
+    output="$(sed -n 's/.*Nets output: *\([0-9][0-9]*\).*/\1/p' "$stage_log" | tail -1)"
+    total="${total:-unknown}"
+    extracted="${extracted:-unknown}"
+    output="${output:-unknown}"
+    bad_devices="$(grep -c 'Bad Device Location' "$stage_log" || true)"
+    node_errors="$(grep -c 'Error in extracting node' "$stage_log" || true)"
+    missing_connections="$(grep -Ec 'Missing (terminal|substrate) connection' "$stage_log" || true)"
+    stage_details+="$stage: total=$total extracted=$extracted output=$output bad_device_locations=$bad_devices node_errors=$node_errors missing_connections=$missing_connections log=$stage_log"$'\n'
+
+    if [[ "$total" == "unknown" || "$extracted" == "unknown" || "$output" == "unknown" ]] ||
+       [[ "$extracted" != "$total" ]] ||
+       grep -Eq 'Bad Device Location|Cannot open file|Error in extracting node|Couldn.t find device|Missing (terminal|substrate) connection' "$stage_log"; then
+      failed=1
+    fi
+    [[ -f "$build_dir/$stage.res.ext" ]] || failed=1
+  done
+
+  cat >"$report" <<EOF
+cell: $cell
+mode: hierarchical extresist with immediate subcells black-boxed
+stages: ${PEX_CELL_ORDER[*]}
+
+$stage_details
+EOF
+
+  if (( failed != 0 )); then
+    echo "==> PEX failed: one or more hierarchy stages were incomplete; see: $report" >&2
+    return 1
+  fi
+
+  cat >"$assemble_tcl" <<EOF
+crashbackups stop
+drc off
+load "$root/magic/$cell.mag"
+select top cell
+cd "$build_dir"
 ext2spice default
-ext2spice hierarchy off
+ext2spice hierarchy on
 ext2spice subcircuit top on
 ext2spice scale off
 ext2spice cthresh 0
@@ -188,26 +343,20 @@ ext2spice extresist on
 ext2spice
 quit -noprompt
 EOF
-
-  echo "==> Extracting full R+C parasitics: $magic_file"
-  rm -f "$raw_spice" "$pex_spice" "$report" "$magic_log"
-  magic -dnull -noconsole -rcfile "$rcfile" "$magic_tcl" 2>&1 | tee "$magic_log"
+  magic -dnull -noconsole -rcfile "$rcfile" "$assemble_tcl" 2>&1 | tee "$assemble_log"
   [[ -f "$raw_spice" ]] || die "Magic did not create expected PEX netlist: $raw_spice"
-  if grep -Eq 'Cannot open file|Error in extracting node|Couldn.t find device|Missing substrate connection' "$magic_log"; then
-    die "Magic reported incomplete resistance extraction; see: $magic_log"
-  fi
-  sed "s/^\\.subckt $extract_cell\\([[:space:]]\\)/.subckt $cell\\1/" "$raw_spice" >"$pex_spice"
-  rm -f "$raw_spice"
-
+  mv "$raw_spice" "$pex_spice"
   resistor_count="$(awk '/^[Rr][^[:space:]]*[[:space:]]/ {count++} END {print count+0}' "$pex_spice")"
   capacitor_count="$(awk '/^[Cc][^[:space:]]*[[:space:]]/ {count++} END {print count+0}' "$pex_spice")"
-  cat >"$report" <<EOF
-cell: $cell
-netlist: $pex_spice
-magic_log: $magic_log
-PARASITIC_RESISTORS=$resistor_count
-PARASITIC_CAPACITORS=$capacitor_count
-EOF
+  {
+    echo "netlist: $pex_spice"
+    echo "PARASITIC_RESISTORS=$resistor_count"
+    echo "PARASITIC_CAPACITORS=$capacitor_count"
+  } >>"$report"
+  if (( resistor_count == 0 || capacitor_count == 0 )); then
+    echo "==> PEX failed validation: expected both R and C elements; see: $report" >&2
+    return 1
+  fi
   echo "==> PEX completed ($resistor_count resistors, $capacitor_count capacitors)"
   echo "==> PEX netlist: $pex_spice"
   echo "==> PEX report: $report"
@@ -304,12 +453,24 @@ EOF
 }
 
 main() {
-  local cmd="${1:-}"
+  local cmd="${1:-}" status=0
   case "$cmd" in
     drc)
       shift
       [[ $# -le 1 ]] || die "too many arguments for drc"
       run_drc "${1:-bgr}"
+      ;;
+    drc-klayout)
+      shift
+      [[ $# -le 1 ]] || die "too many arguments for drc-klayout"
+      run_klayout_drc "${1:-bgr}"
+      ;;
+    drc-all)
+      shift
+      [[ $# -le 1 ]] || die "too many arguments for drc-all"
+      run_drc "${1:-bgr}" || status=1
+      run_klayout_drc "${1:-bgr}" || status=1
+      (( status == 0 )) || return 1
       ;;
     antenna)
       shift
@@ -329,10 +490,16 @@ main() {
     all)
       shift
       [[ $# -le 1 ]] || die "too many arguments for all"
-      run_drc "${1:-bgr}"
-      run_antenna "${1:-bgr}"
-      run_lvs "${1:-bgr}"
-      run_pex "${1:-bgr}"
+      status=0
+      run_drc "${1:-bgr}" || status=1
+      run_klayout_drc "${1:-bgr}" || status=1
+      run_antenna "${1:-bgr}" || status=1
+      run_lvs "${1:-bgr}" || status=1
+      run_pex "${1:-bgr}" || status=1
+      if (( status != 0 )); then
+        echo "==> One or more checks failed; see the individual reports above" >&2
+        return 1
+      fi
       ;;
     -h|--help|help|"")
       usage
