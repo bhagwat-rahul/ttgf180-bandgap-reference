@@ -144,7 +144,7 @@ EOF
     --variant="$variant" \
     --topcell="$cell" \
     --run_dir="$build_dir" \
-    --run_mode=deep \
+    --run_mode="${KLAYOUT_DRC_MODE:-flat}" \
     --mp="${KLAYOUT_DRC_JOBS:-2}" \
     --density \
     --antenna 2>&1 | tee "$run_log"
@@ -443,7 +443,7 @@ EOF
     "$lvs_report"
 
   [[ -f "$lvs_report" ]] || die "netgen did not create LVS report: $lvs_report"
-  if grep -q "Netlists match uniquely" "$lvs_report"; then
+  if grep -q '^Final result: Circuits match uniquely\.$' "$lvs_report"; then
     echo "==> LVS passed"
   else
     echo "==> LVS did not pass; see report: $lvs_report" >&2

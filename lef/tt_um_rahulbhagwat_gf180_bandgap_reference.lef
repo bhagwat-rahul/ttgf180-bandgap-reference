@@ -228,7 +228,7 @@ MACRO tt_um_rahulbhagwat_gf180_bandgap_reference
   PIN uio_oe[0]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 461.046783 ;
+    ANTENNADIFFAREA 455.790802 ;
     PORT
       LAYER Metal4 ;
         RECT 65.650 324.360 65.950 325.360 ;
@@ -237,7 +237,7 @@ MACRO tt_um_rahulbhagwat_gf180_bandgap_reference
   PIN uio_oe[1]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 461.046783 ;
+    ANTENNADIFFAREA 455.790802 ;
     PORT
       LAYER Metal4 ;
         RECT 58.370 324.360 58.670 325.360 ;
@@ -246,7 +246,7 @@ MACRO tt_um_rahulbhagwat_gf180_bandgap_reference
   PIN uio_oe[2]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 461.046783 ;
+    ANTENNADIFFAREA 455.790802 ;
     PORT
       LAYER Metal4 ;
         RECT 51.090 324.360 51.390 325.360 ;
@@ -255,7 +255,7 @@ MACRO tt_um_rahulbhagwat_gf180_bandgap_reference
   PIN uio_oe[3]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 461.046783 ;
+    ANTENNADIFFAREA 455.790802 ;
     PORT
       LAYER Metal4 ;
         RECT 43.810 324.360 44.110 325.360 ;
@@ -264,7 +264,7 @@ MACRO tt_um_rahulbhagwat_gf180_bandgap_reference
   PIN uio_oe[4]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 461.046783 ;
+    ANTENNADIFFAREA 455.790802 ;
     PORT
       LAYER Metal4 ;
         RECT 36.530 324.360 36.830 325.360 ;
@@ -273,7 +273,7 @@ MACRO tt_um_rahulbhagwat_gf180_bandgap_reference
   PIN uio_oe[5]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 461.046783 ;
+    ANTENNADIFFAREA 455.790802 ;
     PORT
       LAYER Metal4 ;
         RECT 29.250 324.360 29.550 325.360 ;
@@ -282,7 +282,7 @@ MACRO tt_um_rahulbhagwat_gf180_bandgap_reference
   PIN uio_oe[6]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 461.046783 ;
+    ANTENNADIFFAREA 455.790802 ;
     PORT
       LAYER Metal4 ;
         RECT 21.970 324.360 22.270 325.360 ;
@@ -291,7 +291,7 @@ MACRO tt_um_rahulbhagwat_gf180_bandgap_reference
   PIN uio_oe[7]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 461.046783 ;
+    ANTENNADIFFAREA 455.790802 ;
     PORT
       LAYER Metal4 ;
         RECT 14.690 324.360 14.990 325.360 ;
@@ -300,7 +300,7 @@ MACRO tt_um_rahulbhagwat_gf180_bandgap_reference
   PIN uio_out[0]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 461.046783 ;
+    ANTENNADIFFAREA 455.790802 ;
     PORT
       LAYER Metal4 ;
         RECT 123.890 324.360 124.190 325.360 ;
@@ -309,7 +309,7 @@ MACRO tt_um_rahulbhagwat_gf180_bandgap_reference
   PIN uio_out[1]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 461.046783 ;
+    ANTENNADIFFAREA 455.790802 ;
     PORT
       LAYER Metal4 ;
         RECT 116.610 324.360 116.910 325.360 ;
@@ -318,7 +318,7 @@ MACRO tt_um_rahulbhagwat_gf180_bandgap_reference
   PIN uio_out[2]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 461.046783 ;
+    ANTENNADIFFAREA 455.790802 ;
     PORT
       LAYER Metal4 ;
         RECT 109.330 324.360 109.630 325.360 ;
@@ -327,7 +327,7 @@ MACRO tt_um_rahulbhagwat_gf180_bandgap_reference
   PIN uio_out[3]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 461.046783 ;
+    ANTENNADIFFAREA 455.790802 ;
     PORT
       LAYER Metal4 ;
         RECT 102.050 324.360 102.350 325.360 ;
@@ -336,7 +336,7 @@ MACRO tt_um_rahulbhagwat_gf180_bandgap_reference
   PIN uio_out[4]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 461.046783 ;
+    ANTENNADIFFAREA 455.790802 ;
     PORT
       LAYER Metal4 ;
         RECT 94.770 324.360 95.070 325.360 ;
@@ -345,7 +345,7 @@ MACRO tt_um_rahulbhagwat_gf180_bandgap_reference
   PIN uio_out[5]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 461.046783 ;
+    ANTENNADIFFAREA 455.790802 ;
     PORT
       LAYER Metal4 ;
         RECT 87.490 324.360 87.790 325.360 ;
@@ -354,7 +354,7 @@ MACRO tt_um_rahulbhagwat_gf180_bandgap_reference
   PIN uio_out[6]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 461.046783 ;
+    ANTENNADIFFAREA 455.790802 ;
     PORT
       LAYER Metal4 ;
         RECT 80.210 324.360 80.510 325.360 ;
@@ -363,7 +363,7 @@ MACRO tt_um_rahulbhagwat_gf180_bandgap_reference
   PIN uio_out[7]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 461.046783 ;
+    ANTENNADIFFAREA 455.790802 ;
     PORT
       LAYER Metal4 ;
         RECT 72.930 324.360 73.230 325.360 ;
@@ -372,7 +372,7 @@ MACRO tt_um_rahulbhagwat_gf180_bandgap_reference
   PIN uo_out[0]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 461.046783 ;
+    ANTENNADIFFAREA 455.790802 ;
     PORT
       LAYER Metal4 ;
         RECT 182.130 324.360 182.430 325.360 ;
@@ -381,7 +381,7 @@ MACRO tt_um_rahulbhagwat_gf180_bandgap_reference
   PIN uo_out[1]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 461.046783 ;
+    ANTENNADIFFAREA 455.790802 ;
     PORT
       LAYER Metal4 ;
         RECT 174.850 324.360 175.150 325.360 ;
@@ -390,7 +390,7 @@ MACRO tt_um_rahulbhagwat_gf180_bandgap_reference
   PIN uo_out[2]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 461.046783 ;
+    ANTENNADIFFAREA 455.790802 ;
     PORT
       LAYER Metal4 ;
         RECT 167.570 324.360 167.870 325.360 ;
@@ -399,7 +399,7 @@ MACRO tt_um_rahulbhagwat_gf180_bandgap_reference
   PIN uo_out[3]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 461.046783 ;
+    ANTENNADIFFAREA 455.790802 ;
     PORT
       LAYER Metal4 ;
         RECT 160.290 324.360 160.590 325.360 ;
@@ -408,7 +408,7 @@ MACRO tt_um_rahulbhagwat_gf180_bandgap_reference
   PIN uo_out[4]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 461.046783 ;
+    ANTENNADIFFAREA 455.790802 ;
     PORT
       LAYER Metal4 ;
         RECT 153.010 324.360 153.310 325.360 ;
@@ -417,7 +417,7 @@ MACRO tt_um_rahulbhagwat_gf180_bandgap_reference
   PIN uo_out[5]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 461.046783 ;
+    ANTENNADIFFAREA 455.790802 ;
     PORT
       LAYER Metal4 ;
         RECT 145.730 324.360 146.030 325.360 ;
@@ -426,7 +426,7 @@ MACRO tt_um_rahulbhagwat_gf180_bandgap_reference
   PIN uo_out[6]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 461.046783 ;
+    ANTENNADIFFAREA 455.790802 ;
     PORT
       LAYER Metal4 ;
         RECT 138.450 324.360 138.750 325.360 ;
@@ -435,7 +435,7 @@ MACRO tt_um_rahulbhagwat_gf180_bandgap_reference
   PIN uo_out[7]
     DIRECTION OUTPUT ;
     USE SIGNAL ;
-    ANTENNADIFFAREA 461.046783 ;
+    ANTENNADIFFAREA 455.790802 ;
     PORT
       LAYER Metal4 ;
         RECT 131.170 324.360 131.470 325.360 ;
@@ -1020,9 +1020,9 @@ MACRO tt_um_rahulbhagwat_gf180_bandgap_reference
         RECT 68.250 49.350 69.800 77.000 ;
         RECT 73.350 66.350 74.650 69.000 ;
         RECT 72.800 63.900 76.050 66.350 ;
-        RECT 61.000 45.300 63.000 47.000 ;
+        RECT 61.850 45.400 62.900 46.350 ;
         RECT 4.000 40.000 6.000 42.950 ;
-        RECT 62.150 38.300 62.600 45.300 ;
+        RECT 62.150 38.300 62.600 45.400 ;
         RECT 64.750 38.250 65.250 46.300 ;
         RECT 68.250 45.250 69.850 49.350 ;
         RECT 73.350 38.000 74.650 63.900 ;
